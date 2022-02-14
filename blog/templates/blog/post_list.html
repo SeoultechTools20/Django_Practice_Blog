@@ -6,6 +6,9 @@
 </head>
 <body>
     <h1>Welcome 장고!!</h1>
+    {# 파이썬 주석1 #}
+    {% comment %} 파이썬 주석2 {% endcomment %}
+
     {%  for post in post_list %}
         <div>
             <p>published: {{ post.published_date }}</p>
