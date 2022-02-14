@@ -1,4 +1,4 @@
-{% extends 'blog\base.html' %}
+{% extends 'blog/base.html' %}
 
 {% block content %}
     {% for post in post_list %}
@@ -6,28 +6,10 @@
             <div class="date">
                 <p>published: {{ post.published_date }}</p>
             </div>
-            <h1><a href="">{{ post.title }}</a></h1>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text| linebreaksbr }}</p>
         </div>
     {% empty %}
         <p>Blog(글)이 없습니다.</p>
     {% endfor %}
 {% endblock %}
-
-
-{# 파이썬 주석1 #}
-{% comment %} 파이썬 주석2 {% endcomment %}
-
-{% comment %}
-{% for post in post_list %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text | linebreaksbr }}</p>
-    </div>
-{% empty %}
-    <p>Blog(글)이 없습니다.</p>
-{% endfor %}
-</body>
-</html>
-{% endcomment %}
