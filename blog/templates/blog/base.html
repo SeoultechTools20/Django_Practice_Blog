@@ -11,6 +11,9 @@
 </head>
 <body>
     <div class="page-header">
+        <a href="{% url 'post_new' %}" class="top-menu">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
         <h1><a href="{% url 'post_list_home' %}">Django Blog</a></h1>
     </div>
     <!-- HTML 주석 -->
@@ -26,21 +29,3 @@
     </div>
 </body>
 </html>
-
-
-{# 파이썬 주석1 #}
-{% comment %} 파이썬 주석2 {% endcomment %}
-
-{% comment %}
-{% for post in post_list %}
-    <div>
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text | linebreaksbr }}</p>
-    </div>
-{% empty %}
-    <p>Blog(글)이 없습니다.</p>
-{% endfor %}
-</body>
-</html>
-{% endcomment %}
