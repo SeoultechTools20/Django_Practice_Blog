@@ -1,5 +1,12 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+
 from . import views
+from . import viewsets
+
+router = routers.DefaultRouter()
+router.register(r'posts', viewsets.PostViewSet)
+router.register(r'comments', viewsets.CommentViewSet)
 
 urlpatterns = [
     # http://localhost:8000/blog
@@ -13,9 +20,14 @@ urlpatterns = [
     # http://localhost:8000/blog/post/1/remove
     path('post/<int:pk>/remove/', views.post_remove, name='post_remove'),
     # http://localhost:8000/blog/post/1/comment
-    path('post/<int:pk>/comment', views.add_comment_to_post, name='add_comment_to_post'),
-    # http://localhost:8000/blog/post/2/approve
+    path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
+    # http://localhost:8000/blog/comment/2/approve
     path('comment/<int:pk>/approve/', views.comment_approve, name='comment_approve'),
-    # http://localhost:8000/blog/post/2/remove
+    # http://localhost:8000/blog/comment/2/remove
     path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
+
+    path('', include(router.urls)),
+    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    # Token 발행요청 http://localhost:8000/blog/api/login
+    path('api/login/', views.login, name='login')
 ]
