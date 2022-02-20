@@ -24,12 +24,11 @@
                 <span class="glyphicon glyphicon-remove"></span>
             </a>
         {% endif %}
-        <h1>{{ post_key.title }}</h1>
-        <p>{{ post_key.text| linebreaksbr }}</p>
+        <h1>제목: {{ post_key.title }}</h1>
+        <p>내용:</p>
+        <p> {{ post_key.text| linebreaksbr }}</p>
 
-        <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post_key.pk %}">
-            Add comment
-        </a>
+        <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post_key.pk %}">댓글 달기</a>
         {% for comment in post_key.comments.all %}
             {% if user.is_authenticated or comment.approved_comment %}
             <div class="comment">
@@ -44,7 +43,7 @@
                     {% endif %}
                 </div>
                 <strong>{{ comment.author }}</strong>
-                <p>{{ comment.text|linebreaks }}</p>
+                <p>내용: {{ comment.text|linebreaks }}</p>
             </div>
             {% endif %}
         {% empty %}
